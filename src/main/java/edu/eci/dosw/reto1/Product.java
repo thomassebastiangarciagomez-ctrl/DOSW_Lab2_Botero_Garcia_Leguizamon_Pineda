@@ -8,7 +8,7 @@ public class Product{
         this.price = price;
     }
 
-    public String gerName(){
+    public String getName(){
         return name;
     }
 
