@@ -4,5 +4,5 @@ This repository is about the second laboratory of DOSW.
 | --- | --- |
 | JOSE DANIEL GARCIA PINEDA | |
 | THOMAS SEBASTIAN GARCIA GOMEZ | |
-| MIGUEL MONTERO | |
+| MIGUEL BOTERO | |
 | JUAN GUILLERMO LEGUIZAMON RODRIGUEZ | |
