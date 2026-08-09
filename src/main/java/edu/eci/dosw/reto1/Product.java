@@ -1,8 +1,8 @@
 package edu.eci.dosw.reto1;
 
 public class Product{
-    private int price;
-    private String name;
+    private final int price;
+    private final String name;
     public Product(String name, int price){
         this.name = name;
         this.price = price;
