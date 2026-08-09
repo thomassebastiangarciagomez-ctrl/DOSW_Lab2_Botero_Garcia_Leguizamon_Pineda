@@ -12,7 +12,6 @@ public class Bill {
     public Bill(ArrayList<Product> products, Customer customer){
         this.customer = customer;
         this.products = products;
-
     }
 
     public ArrayList<Product> getProducts(){
