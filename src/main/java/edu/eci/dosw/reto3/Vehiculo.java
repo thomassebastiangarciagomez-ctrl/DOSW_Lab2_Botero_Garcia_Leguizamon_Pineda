@@ -7,8 +7,6 @@ public abstract class Vehiculo {
     protected int velocidadMaxima;
     protected String equipoEspecial;
 
-    //Abstract methods
-
     public String getTipo(){
         return this.tipo;
     }
