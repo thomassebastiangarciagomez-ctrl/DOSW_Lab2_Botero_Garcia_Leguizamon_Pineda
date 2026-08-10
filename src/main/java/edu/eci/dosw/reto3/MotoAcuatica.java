@@ -2,28 +2,11 @@ package edu.eci.dosw.reto3;
 
 public class MotoAcuatica extends Vehiculo{
     
-    /**
-     * 
-     */
-    @Override
-    public String getTipo(){
-        return "";
-
-    }
-
-    /**
-     * 
-     */
-    @Override
-    public int getPrecio(){
-        return 0;
-    }
-
-    /**
-     * 
-     */
-    @Override
-    public String getEquipoEspecial(){
-        return "";
+    public MotoAcuatica(String categoria){
+        this.categoria = categoria;
+        this.tipo = "Water";
+        this.precio = 75000;
+        this.velocidadMaxima = 50;
+        this.equipoEspecial = "Paracaidas";
     }
 }

@@ -2,28 +2,11 @@ package edu.eci.dosw.reto3;
 
 public class Helicoptero extends Vehiculo{
     
-    /**
-     * 
-     */
-    @Override
-    public String getTipo(){
-        return "";
-
-    }
-
-    /**
-     * 
-     */
-    @Override
-    public int getPrecio(){
-        return 0;
-    }
-
-    /**
-     * 
-     */
-    @Override
-    public String getEquipoEspecial(){
-        return "";
+    public Helicoptero(String categoria){
+        this.categoria = categoria;
+        this.tipo = "Air";
+        this.precio = 700;
+        this.velocidadMaxima = 200;
+        this.equipoEspecial = "Manejo asistido con IA";
     }
 }
