@@ -16,7 +16,7 @@ public class Bill {
     }
 
     public ArrayList<Product> getProducts(){
-        return products;
+        return new ArrayList<>(products);
     }
 
     public int getSubtotal(){
