@@ -41,6 +41,7 @@ public class Reto2 {
         reto2.addIngredient("Bread", 2000);
         reto2.addIngredient("Meat", 10000);
         reto2.addIngredient("Beacon", 5000);
+        reto2.addIngredient("Cheese", 1000);
         reto2.addIngredient("Bread", 2000);
 
         reto2.buildHamburger();
