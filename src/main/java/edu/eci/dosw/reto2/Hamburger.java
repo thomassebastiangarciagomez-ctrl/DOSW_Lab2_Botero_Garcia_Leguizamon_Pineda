@@ -5,8 +5,7 @@ public class Hamburger {
     
     private List<Ingredient> ingredients;
 
-    public Hamburger(ArrayList<Ingredient> ingredients){
-        this.ingredients = new ArrayList<>();
+    public Hamburger(List<Ingredient> ingredients){
         this.ingredients = ingredients;
     }
 
