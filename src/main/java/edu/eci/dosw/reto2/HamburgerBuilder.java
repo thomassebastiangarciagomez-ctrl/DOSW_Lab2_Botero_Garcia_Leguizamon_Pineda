@@ -34,6 +34,46 @@ public class HamburgerBuilder {
     }
 
     /**
+     * Cheese like hamburger ingredient
+     * @param price meat price
+     * @return hamburgerBuilder add meat
+     */
+    public HamburgerBuilder cheese(double price){
+        ingredients.add(new Ingredient("cheese", price));
+        return this;
+    }
+
+    /**
+     * Vegetables like hamburger ingredient
+     * @param price meat price
+     * @return hamburgerBuilder add meat
+     */
+    public HamburgerBuilder vegetables(double price){
+        ingredients.add(new Ingredient("vegetables", price));
+        return this;
+    }
+
+    /**
+     * Sauces like hamburger ingredient
+     * @param price meat price
+     * @return hamburgerBuilder add meat
+     */
+    public HamburgerBuilder sauces(double price){
+        ingredients.add(new Ingredient("sauces", price));
+        return this;
+    }
+
+    /**
+     * Other like hamburger ingredient
+     * @param price meat price
+     * @return hamburgerBuilder add meat
+     */
+    public HamburgerBuilder other(String name, double price){
+        ingredients.add(new Ingredient(name, price));
+        return this;
+    }
+
+    /**
      * Build hamburger
      * @return hamburger with all ingredients
      */
@@ -41,4 +81,3 @@ public class HamburgerBuilder {
         return new Hamburger(ingredients);
     }
 }
-
