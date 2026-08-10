@@ -1,13 +1,14 @@
 package edu.eci.dosw.reto1;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * This class is for Laboratory 2 Challenge 1. This class is in construction
  *
  */
 public class Bill {
-    private final ArrayList<Product> products;
-    private final Customer customer;
+    private ArrayList<Product> products;
+    private Customer customer;
 
     public Bill(ArrayList<Product> products, Customer customer){
         this.customer = customer;
@@ -31,5 +32,21 @@ public class Bill {
     
     public double getTotal(){
         return getSubtotal() - getDiscountAmount();
+    }
+
+    /**
+     * This method works on create and calculate the final value of the products
+     * that the customer paid
+     * 
+     */
+    public void createBill(){
+        String list = products.stream()
+            .collect(Collectors.groupingBy(Product::getName))
+            .entrySet().stream()
+            .map(s -> s.getKey() + " X" + s.getValue().size() + 
+            "\t --- \t" + s.getValue().stream().mapToDouble(Product::getPrice).sum())
+            .collect(Collectors.joining("\n"));
+
+        System.out.println(list + "\n\nSubtotal: \t --- \t" + getSubtotal() + "\nDiscount: \t --- \t" + getDiscountAmount() + "\nFinal price: \t --- \t" + getTotal());
     }
 }
