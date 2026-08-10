@@ -7,6 +7,6 @@ public class AerioCreator extends VehiculoFactory{
      */
     @Override
     protected Vehiculo crearVehiculo(String tipo, String categoria){
-        return new Carro();
+        return new Carro("");
     }
 }
