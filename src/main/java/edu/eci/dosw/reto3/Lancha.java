@@ -2,28 +2,11 @@ package edu.eci.dosw.reto3;
 
 public class Lancha extends Vehiculo{
     
-    /**
-     * 
-     */
-    @Override
-    public String getTipo(){
-        return "";
-
-    }
-
-    /**
-     * 
-     */
-    @Override
-    public int getPrecio(){
-        return 0;
-    }
-
-    /**
-     * 
-     */
-    @Override
-    public String getEquipoEspecial(){
-        return "";
+    public Lancha(String categoria){
+        this.categoria = categoria;
+        this.tipo = "Water";
+        this.precio = 145000;
+        this.velocidadMaxima = 80;
+        this.equipoEspecial = "Ancla automatica";
     }
 }

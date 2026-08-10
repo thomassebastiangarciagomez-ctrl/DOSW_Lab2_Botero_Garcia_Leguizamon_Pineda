@@ -10,7 +10,5 @@ public abstract class VehiculoFactory {
      * @param tipo
      * @param categoria
      */
-    protected void ventaVehiculo(String tipo, String categoria){
-
-    }
+    public abstract Vehiculo ventaVehiculo(String tipo, String categoria);
 }
