@@ -3,28 +3,16 @@ package edu.eci.dosw.reto3;
 public class Moto extends Vehiculo{
     
     
-    /**
-     * 
-     */
-    @Override
-    public String getTipo(){
-        return "";
+    public static final int PRECIO = 75000;
+    public static final String TIPO = "Land";
+    public static final int VELOCIDADMAXIMA = 100;
+    public static final String EQUIPOESPECIAL = "Frenos ABS";
 
-    }
-
-    /**
-     * 
-     */
-    @Override
-    public int getPrecio(){
-        return 0;
-    }
-
-    /**
-     * 
-     */
-    @Override
-    public String getEquipoEspecial(){
-        return "";
+    public Moto(String categoria){
+        this.categoria = categoria;
+        this.tipo = Carro.TIPO;
+        this.precio = Carro.PRECIO;
+        this.velocidadMaxima = Carro.VELOCIDADMAXIMA;
+        this.equipoEspecial = Carro.EQUIPOESPECIAL;
     }
 }

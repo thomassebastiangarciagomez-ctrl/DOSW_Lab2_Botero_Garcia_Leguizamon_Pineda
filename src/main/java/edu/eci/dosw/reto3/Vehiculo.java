@@ -1,24 +1,29 @@
 package edu.eci.dosw.reto3;
 
 public abstract class Vehiculo {
-    public String tipo;
-    public String categoria;
-    public int precio;
-    public int velocidadMaxima;
-    public String equipoEspecial;
+    protected String tipo;
+    protected String categoria;
+    protected int precio;
+    protected int velocidadMaxima;
+    protected String equipoEspecial;
 
     //Abstract methods
 
-    public abstract String getTipo();
-    public abstract int getPrecio();
-    public abstract String getEquipoEspecial();
+    public String getTipo(){
+        return this.tipo;
+    }
+    public int getPrecio(){
+        return this.precio;
+    }
+    public String getEquipoEspecial(){
+        return this.equipoEspecial;
+    }
 
-
-    /**
-     * 
-     * @return
-     */
     public int getVelocidadMaxima(){
-        return 0;
+        return this.velocidadMaxima;
+    }
+
+    public String getCategoria(){
+        return this.categoria;
     }
 }
