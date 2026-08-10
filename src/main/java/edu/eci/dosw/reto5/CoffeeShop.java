@@ -23,21 +23,41 @@ public class CoffeeShop {
 
     /**
      * 
+     * @return
      */
-    public void showCoffie(){
+    public String showCoffie(){
         String description = coffees.stream()
-            .map(s -> s.getPrice() + " " + s.getDescription())
+            .map(s -> s.getDescription() + "\t --- \t" + s.getPrice())
             .collect(Collectors.joining("\n"));
         
-        System.out.println(description);
+        return description;
     }
 
     /**
      * 
      * @param price
      */
-    public void addCoffee(String name, double price){
+    public Coffee addCoffee(String name, double price){
         Coffee coffee = new Coffee(price);
         coffees.add(coffee);
+        return coffee;
+    }
+
+    /**
+     * 
+     * @param coffee
+     */
+    public Coffee addTopping(Coffee coffee, String topping){
+        int index = coffees.indexOf(coffee);
+        Coffee decoration = PermutadorCoffee.addTopings(coffee, topping);
+        coffees.set(index, decoration);
+        return decoration;
+    }
+
+    public void finalBill(){
+        String description = showCoffie();
+        double price = calculatePrice();
+
+        System.out.println("Coffee Shop\n" + description + "\n\n" + "Total: \t --- \t" + price);
     }
 }
