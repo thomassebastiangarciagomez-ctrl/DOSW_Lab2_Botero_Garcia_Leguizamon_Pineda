@@ -19,3 +19,13 @@ Explanation:
 
 
 
+## Challenge 2 - The Five-Star Chef
+
+### Diagram class
+
+![Challenge_evidence](diagrams/diagrama_reto2.png)
+
+Explanation:
+
+
+
