@@ -35,15 +35,4 @@ public class Reto2 {
         HamburgerService hamburgerService = new HamburgerService(hamburger);
         hamburgerService.calculatePrice();
     }
-
-    public static void main(String[] args){
-        Reto2 reto2 = new Reto2();
-        reto2.addIngredient("Bread", 2000);
-        reto2.addIngredient("Meat", 10000);
-        reto2.addIngredient("Beacon", 5000);
-        reto2.addIngredient("Cheese", 1000);
-        reto2.addIngredient("Bread", 2000);
-
-        reto2.buildHamburger();
-    }
 }

@@ -31,9 +31,4 @@ public class Reto1 {
         bill = new Bill(products, customer);
         bill.createBill();
     }
-
-    public static void main(String[] args){
-        Reto1 reto1 = new Reto1();
-        reto1.getBill();
-    }
 }
