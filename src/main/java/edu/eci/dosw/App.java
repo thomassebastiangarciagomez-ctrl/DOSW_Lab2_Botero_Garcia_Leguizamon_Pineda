@@ -84,18 +84,7 @@ public class App {
      * 
      */
     public void reto7(){
-        Light light = new Light();
-        LightCommand lc = new LightCommand(light, new User("Juan"));
-        RemoteControl rc = new RemoteControl();
-        rc.setCommand(lc);
-        rc.pressExecuteBotton();
-        rc.pressUndoBotton();
-        rc.pressUndoBotton();
-        
-        lc = new LightCommand(light, new User("Pedro"));
-        rc.setCommand(lc);
-        rc.pressExecuteBotton();
-        rc.getHistory().stream().forEach(c -> System.out.println(c+"\n"));
+        Reto7.run();
     }
 
     /**
