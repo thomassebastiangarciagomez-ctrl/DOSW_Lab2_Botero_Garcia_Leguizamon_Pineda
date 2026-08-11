@@ -44,6 +44,20 @@ For the second challenge, the design pattern chosen was Builder. This is because
 
 This solution is key given the type of problem we're facing — a user is going to buy a hamburger, but they won't always want the same ingredients; these can vary. So it's very important to be able to create these combinations effectively, in such a way that the ingredients aren't tied to the hamburger but are instead free elements that may or may not be included in it without any consequence.
 
+## Challenge 3 — The Kingdom of Vehicles
+### Diagram class
+
+![Challenge_evidence](diagrams/diagrama_reto3.png)
+A dealership system, "The Kingdom of Vehicles", that sells land, water, and air vehicles across multiple categories (Economy, Luxury, Used). Users can select any number of vehicles by family, category, and model, and the system generates each requested vehicle along with a purchase summary and total price.
+
+### Design Pattern Documentation
+
+| Item | Team Explanation |
+|---|---|
+| **Design Pattern Category** | Creational Pattern |
+| **Pattern Used** | Factory Method (with an Abstract Factory–style separation per vehicle family) |
+| **Justification** | The system needs to create different kinds of vehicles (land, water, air), each with several subtypes and categories, without the client code depending on the concrete vehicle classes. The Factory Method pattern encapsulates the creation logic in specialized creator subclasses per family, so new vehicle types can be added without modifying the code that requests them. |
+| **How It Was Applied** | `VehiculoFactory` is the abstract class that declares the factory method `crearVehiculo(tipo, categoria)` along with the public `ventaVehiculo(...)` method that invokes it. Each vehicle family has its own concrete creator — `TerrestreCreator` (Carro, Moto, Bicicleta), `AcuaticaCreator` (Velero, MotoAcuatica, Lancha), and `AerioCreator` (Avion, AvionCargaLigera, Helicoptero) — which decides, based on the given `tipo`, which concrete `Vehiculo` subclass to instantiate. All concrete vehicles extend the abstract `Vehiculo` class, which defines shared attributes such as `tipo`, `categoria`, `precio`, `velocidadMaxima`, and `equipoEspecial`. In `Reto3`, the client only interacts with the factories and the abstract `Vehiculo` type, never with the concrete classes directly, and uses Java Streams (`forEach` and `mapToInt().sum()`) to display the purchase summary and compute the total price of all selected vehicles. |
 
 ## Challenge 5 — Customized Coffee
 
