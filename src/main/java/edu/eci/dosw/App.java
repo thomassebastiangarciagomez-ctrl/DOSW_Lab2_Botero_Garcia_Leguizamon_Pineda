@@ -1,6 +1,7 @@
 package edu.eci.dosw;
 import edu.eci.dosw.reto1.*;
 import edu.eci.dosw.reto2.*;
+import edu.eci.dosw.reto3.Reto3;
 //import edu.eci.dosw.reto3.*;
 //import edu.eci.dosw.reto4.*;
 import edu.eci.dosw.reto5.*;
@@ -45,7 +46,7 @@ public class App {
      * 
      */
     public void reto3(){
-
+        Reto3.run();
     }
 
     /**
