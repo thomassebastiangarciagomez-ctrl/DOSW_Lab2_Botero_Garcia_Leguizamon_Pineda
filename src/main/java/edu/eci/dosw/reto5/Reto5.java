@@ -22,19 +22,4 @@ public class Reto5 {
     public Coffee addTopping(Coffee coffee, String topping){
         return coffeeShop.addTopping(coffee, topping);
     }
-
-    public static void main(String[] args){
-        Reto5 reto5 = new Reto5();
-
-        Coffee coffee1 = reto5.addCoffee("Coffee", 2000.0);
-        coffee1 = reto5.addTopping(coffee1, "caramel");
-        coffee1 = reto5.addTopping(coffee1, "chocolate");
-        coffee1 = reto5.addTopping(coffee1, "whipped");
-
-        Coffee coffee2 = reto5.addCoffee("Coffee", 3000.0);
-        coffee2 = reto5.addTopping(coffee2, "milk");
-        coffee2 = reto5.addTopping(coffee2, "mint");
-
-        reto5.getCoffeeShop().finalBill();
-    }
 }
