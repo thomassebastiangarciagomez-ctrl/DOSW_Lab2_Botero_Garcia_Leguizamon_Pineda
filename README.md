@@ -2,7 +2,7 @@
 This repository is about the second laboratory of DOSW. Daniel Pinzon, Thomas Garcia
 | Name | Institutional Email | GitHub User |
 | --- | --- | --- |
-| JOSE DANIEL GARCIA PINEDA jose.gpineda@mail.escuelaing.edu.co | KenjiMaster |
+| JOSE DANIEL GARCIA PINEDA | jose.gpineda@mail.escuelaing.edu.co | KenjiMaster |
 | THOMAS SEBASTIAN GARCIA GOMEZ | thomas.garcia-g@mail.escuelaing.edu.co | thomassebastiangarciagomez-ctrl |
 | MIGUEL BOTERO | | |
 | JUAN GUILLERMO LEGUIZAMON RODRIGUEZ | | |
