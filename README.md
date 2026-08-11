@@ -6,7 +6,7 @@ This repository is about the second laboratory of DOSW.
 | JOSE DANIEL GARCIA PINEDA | jose.gpineda@mail.escuelaing.edu.co | KenjiMaster |
 | THOMAS SEBASTIAN GARCIA GOMEZ | thomas.garcia-g@mail.escuelaing.edu.co | thomassebastiangarciagomez-ctrl |
 | MIGUEL BOTERO | | |
-| JUAN GUILLERMO LEGUIZAMON RODRIGUEZ | | |
+| JUAN GUILLERMO LEGUIZAMON RODRIGUEZ | juan.leguizamon-r@mail.escuelaing.edu.co | Prometeus1439 |
 
 ## Challenge Evidence
 
