@@ -4,8 +4,9 @@ import java.util.*;
 
 public class ExchangeRateService {
     private final Map<String, Double> ratesFromBase;
+    private final List<CurrencyInfo> supportedCurrencies;
 
-    public ExchangeRateService(){
+    public ExchangeRateService() {
         // USD is used as the reference (base) currency to simplify the calculation
         // of any conversion pair without duplicating rates
         ratesFromBase = new HashMap<>();
@@ -13,6 +14,17 @@ public class ExchangeRateService {
         ratesFromBase.put("EUR", 0.9175);
         ratesFromBase.put("JPY", 156.85);
         ratesFromBase.put("COP", 3923.20);
+
+        supportedCurrencies = List.of(
+            new CurrencyInfo("USD", "US Dollar"),
+            new CurrencyInfo("EUR", "Euro"),
+            new CurrencyInfo("JPY", "Japanese Yen"),
+            new CurrencyInfo("COP", "Colombian Peso")
+        );
+    }
+
+    public List<CurrencyInfo> getSupportedCurrencies() {
+        return new ArrayList<>(supportedCurrencies);
     }
 
     public double convert(double amount, String from, String to) {
@@ -26,7 +38,7 @@ public class ExchangeRateService {
     private double getRate(String currency) {
         Double rate = ratesFromBase.get(currency);
         if (rate == null) {
-            throw new IllegalArgumentException("Moneda no soportada: " + currency);
+            throw new IllegalArgumentException("Unsupported currency: " + currency);
         }
         return rate;
     }
