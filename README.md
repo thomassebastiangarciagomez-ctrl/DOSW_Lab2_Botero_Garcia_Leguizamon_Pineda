@@ -1,5 +1,14 @@
 # DOSW_Lab2_Botero_Garcia_Leguizamon_Pineda
-This repository is about the second laboratory of DOSW. Daniel Pinzon, Thomas Garcia
+This repository is about the second laboratory of DOSW.
+
+| Name | Institutional Email | GitHub User |
+| --- | --- | --- |
+| JOSE DANIEL GARCIA PINEDA | jose.gpineda@mail.escuelaing.edu.co | KenjiMaster |
+| THOMAS SEBASTIAN GARCIA GOMEZ | thomas.garcia-g@mail.escuelaing.edu.co | thomassebastiangarciagomez-ctrl |
+| MIGUEL BOTERO | | |
+| JUAN GUILLERMO LEGUIZAMON RODRIGUEZ | | |
+
+## Challenge Evidence
 
 ## Challenge 1 — Don Pepe's Store
 
@@ -41,7 +50,23 @@ This repository is about the second laboratory of DOSW. Daniel Pinzon, Thomas Ga
 - `groupingBy` + `joining`: groups repeated products by name and builds the quantity listing for the receipt.
 - `forEach`: iterates over individual products for the receipt detail.
 
+> **Note:** the design described above is the intended target design. As of this commit, `src/main/java/edu/eci/dosw/reto1/Bill.java` does not yet fully match it (a separate `createBill()` method still mixes calculation and printing, and fields are not `final`). This needs to be reconciled with the team before final submission.
+
 ![Challenge 1 Class Diagram](diagrams/diagrama_reto1.png)
+
+---
+
+## Challenge 2 — The Five-Star Chef
+
+### Diagram class
+
+![Challenge_evidence](diagrams/diagrama_reto2.png)
+
+Explanation:
+
+For the second challenge, the design pattern chosen was Builder. This is because HamburgerBuilder constructs a Hamburger object step by step through chained calls (bread().meat().cheese()...build()), without exposing a Hamburger constructor with a long list of parameters or forcing the object to be built in a single step. This is classic Builder: it separates the construction of a complex object from its final representation.
+
+This solution is key given the type of problem we're facing — a user is going to buy a hamburger, but they won't always want the same ingredients; these can vary. So it's very important to be able to create these combinations effectively, in such a way that the ingredients aren't tied to the hamburger but are instead free elements that may or may not be included in it without any consequence.
 
 ---
 
@@ -51,7 +76,7 @@ This repository is about the second laboratory of DOSW. Daniel Pinzon, Thomas Ga
 
 - **`CurrencyTransaction`**: represents a conversion request — amount, source currency, and list of target currencies. Immutable, with defensive copies of the list in both the constructor and the getter.
 - **`CurrencyInfo`**: general currency information (code, full name) — no amount, since it represents reference data rather than a specific operation.
-- **`ExchangeRateService`**: stores fixed rates relative to a single base currency (USD), and exposes `convert(amount, from, to)` as the single entry point. Internally resolves the conversion in two steps (source → base → target), without the caller needing to know that detail.
+- **`ExchangeRateService`**: stores fixed rates relative to a single base currency (USD), and exposes `convert(amount, from, to)` as the single entry point. Internally resolves the conversion in two steps (source → base → target), without the caller needing to know that detail. Also exposes `getSupportedCurrencies()`, returning the list of `CurrencyInfo` it accepts.
 - **`ExchangeReport`**: receives the list of `CurrencyTransaction` and the `ExchangeRateService`, and calculates the converted totals per target currency, summing across all transactions.
 - **`ExchangeReportPrinter`**: formats and prints the full report (per-transaction detail + totals), separated from the calculation logic.
 
@@ -65,7 +90,7 @@ This repository is about the second laboratory of DOSW. Daniel Pinzon, Thomas Ga
 ### SOLID Principles
 
 - **S (Single Responsibility):** `ExchangeRateService` only converts; `ExchangeReport` only aggregates totals; `ExchangeReportPrinter` only prints.
-- **O (Open/Closed):** adding a newly supported currency only requires one new entry in `ExchangeRateService`'s rate map — no existing logic is modified.
+- **O (Open/Closed):** adding a newly supported currency only requires one new entry in `ExchangeRateService`'s rate map (and its corresponding `CurrencyInfo`) — no existing logic is modified.
 - **D (Dependency Inversion):** `ExchangeReport` depends on `ExchangeRateService`'s public method, not on how rates are stored or calculated internally.
 
 ### Streams Used
@@ -79,13 +104,27 @@ This repository is about the second laboratory of DOSW. Daniel Pinzon, Thomas Ga
 
 USD was used as the internal reference currency because it is a common convention in currency exchange systems — any other currency could have been used with the same mathematical result.
 
-### Known Gap
-
-`CurrencyInfo` was designed to hold general currency reference data (code, full name) but is not currently wired into `ExchangeRateService` or any other class — it exists as a standalone data class not yet connected to the rest of the solution. A future improvement would be to have `ExchangeRateService` validate currencies against a list of `CurrencyInfo` before attempting a conversion.
-
 ### Diagram
 
 ![Challenge 4 Class Diagram](diagrams/diagrama_reto4.png)
+
+---
+
+## Challenge 5 — Customized Coffee
+
+### Diagram class
+![Challenge evidence](diagrams/diagrama_reto5.png)
+
+A creative coffee shop system that allows customers to customize their coffee by adding toppings, sauces, and complements. Each topping adds to the price and can be freely combined with others, while new toppings can be introduced without modifying the base coffee implementation.
+
+### Design Pattern Documentation
+
+| Item | Team Explanation |
+|---|---|
+| **Design Pattern Category** | Structural Pattern |
+| **Pattern Used** | Decorator |
+| **Justification** | The Decorator pattern allows new responsibilities (toppings) to be attached to a `Coffee` object dynamically, without altering its class or the classes of other toppings. This satisfies the Open/Closed Principle: the base `Coffee` stays untouched while the system grows through new decorator classes, and toppings can be stacked in any combination to build a customized coffee. |
+| **How It Was Applied** | `Coffee` is the base component, exposing `getPrice()` and `getDescription()`. Each topping (`MilkDecorator`, `ChocolateDecorator`, `CaramelDecorator`, `WhippedCreamDecorator`, `MintDecorator`) extends `Coffee` and wraps another `Coffee` instance, overriding `getPrice()` and `getDescription()` to add its own cost and label on top of the wrapped object — allowing decorators to be chained to combine multiple toppings on the same coffee. `PermutadorCoffee` acts as a topping registry, mapping topping names to decorator constructors (`Map<String, Function<Coffee, Coffee>>`), so a new topping can be added by creating a new decorator class and registering it, with no changes to `Coffee` or existing decorators. `CoffeeShop` manages the collection of coffees, applies decorators dynamically through `addTopping`, and uses Java Streams (`mapToDouble().sum()` and `map().collect(Collectors.joining())`) to compute each coffee's total and the shop's overall bill. |
 
 ---
 
@@ -132,4 +171,22 @@ The requirements describe technicians as having both a specialty (difficulty lev
 
 ### Diagram
 
-![Challenge 6 Class Diagram](diagrams/diagrama_reto6.png)
+![Challenge 6 Class Diagram](diagrams/diagrama_reto6_leguizamon.png)
+
+---
+
+## Challenge 7 — The Magic Remote Control
+
+### Diagram class
+![Challenge evidence](diagrams/diagrama_reto7.png)
+
+A magic remote control that executes actions on home devices such as lights, doors, music systems, and window blinds. Actions may take parameters, are tracked in a complete history, and can be undone, keeping an audit trail of which user was responsible for each change.
+
+### Design Pattern Documentation
+
+| Item | Team Explanation |
+|---|---|
+| **Design Pattern Category** | Behavioral Pattern |
+| **Pattern Used** | Command |
+| **Justification** | The Command pattern encapsulates each device action (turning on a light, opening a door, playing music) as an object with `execute()` and `undo()` operations. This decouples the invoker of an action (`RemoteControl`) from the object that actually performs it (`Light`, `Door`, `MusicSystem`, `WindowBlind`), and allows new commands to be added without modifying the invoker. It also naturally supports undoable operations and keeping a history of executed requests, which are core requirements of this challenge. |
+| **How It Was Applied** | `Command` is the abstract class defining `execute()`, `undo()`, and `getLog()`. Each concrete command (`LightCommand`, `DoorCommand`, `MusicSystemCommand`, `WindowBlindCommand`) implements these methods by delegating the actual behavior to its associated `Device`, while storing the `User` who triggered the action and producing a log message identifying who executed or undid it. `RemoteControl` acts as the invoker: it holds the current command (`setCommand`), triggers execution or undo through `pressExecuteBotton()`/`pressUndoBotton()`, and appends every resulting log entry to a `history` list. This history provides the full audit trail needed to answer who executed each action, which actions were undone, and which user changed each device. |
