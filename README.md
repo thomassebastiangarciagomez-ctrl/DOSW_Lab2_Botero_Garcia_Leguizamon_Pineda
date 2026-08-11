@@ -44,3 +44,35 @@ For the second challenge, the design pattern chosen was Builder. This is because
 
 This solution is key given the type of problem we're facing — a user is going to buy a hamburger, but they won't always want the same ingredients; these can vary. So it's very important to be able to create these combinations effectively, in such a way that the ingredients aren't tied to the hamburger but are instead free elements that may or may not be included in it without any consequence.
 
+
+## Challenge 5 — Customized Coffee
+
+### Diagram class
+![Challenge evidence](diagrams/diagrama_reto5.png)
+
+A creative coffee shop system that allows customers to customize their coffee by adding toppings, sauces, and complements. Each topping adds to the price and can be freely combined with others, while new toppings can be introduced without modifying the base coffee implementation.
+
+### Design Pattern Documentation
+
+| Item | Team Explanation |
+|---|---|
+| **Design Pattern Category** | Structural Pattern |
+| **Pattern Used** | Decorator |
+| **Justification** | The Decorator pattern allows new responsibilities (toppings) to be attached to a `Coffee` object dynamically, without altering its class or the classes of other toppings. This satisfies the Open/Closed Principle: the base `Coffee` stays untouched while the system grows through new decorator classes, and toppings can be stacked in any combination to build a customized coffee. |
+| **How It Was Applied** | `Coffee` is the base component, exposing `getPrice()` and `getDescription()`. Each topping (`MilkDecorator`, `ChocolateDecorator`, `CaramelDecorator`, `WhippedCreamDecorator`, `MintDecorator`) extends `Coffee` and wraps another `Coffee` instance, overriding `getPrice()` and `getDescription()` to add its own cost and label on top of the wrapped object — allowing decorators to be chained to combine multiple toppings on the same coffee. `PermutadorCoffee` acts as a topping registry, mapping topping names to decorator constructors (`Map<String, Function<Coffee, Coffee>>`), so a new topping can be added by creating a new decorator class and registering it, with no changes to `Coffee` or existing decorators. `CoffeeShop` manages the collection of coffees, applies decorators dynamically through `addTopping`, and uses Java Streams (`mapToDouble().sum()` and `map().collect(Collectors.joining())`) to compute each coffee's total and the shop's overall bill. |
+
+## Challenge 7 — The Magic Remote Control
+
+### Diagram class
+![Challenge evidence](diagrams/diagrama_reto7.png)
+
+A magic remote control that executes actions on home devices such as lights, doors, music systems, and window blinds. Actions may take parameters, are tracked in a complete history, and can be undone, keeping an audit trail of which user was responsible for each change.
+
+### Design Pattern Documentation
+
+| Item | Team Explanation |
+|---|---|
+| **Design Pattern Category** | Behavioral Pattern |
+| **Pattern Used** | Command |
+| **Justification** | The Command pattern encapsulates each device action (turning on a light, opening a door, playing music) as an object with `execute()` and `undo()` operations. This decouples the invoker of an action (`RemoteControl`) from the object that actually performs it (`Light`, `Door`, `MusicSystem`, `WindowBlind`), and allows new commands to be added without modifying the invoker. It also naturally supports undoable operations and keeping a history of executed requests, which are core requirements of this challenge. |
+| **How It Was Applied** | `Command` is the abstract class defining `execute()`, `undo()`, and `getLog()`. Each concrete command (`LightCommand`, `DoorCommand`, `MusicSystemCommand`, `WindowBlindCommand`) implements these methods by delegating the actual behavior to its associated `Device`, while storing the `User` who triggered the action and producing a log message identifying who executed or undid it. `RemoteControl` acts as the invoker: it holds the current command (`setCommand`), triggers execution or undo through `pressExecuteBotton()`/`pressUndoBotton()`, and appends every resulting log entry to a `history` list. This history provides the full audit trail needed to answer who executed each action, which actions were undone, and which user changed each device. |
